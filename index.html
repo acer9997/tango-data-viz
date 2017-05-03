@@ -21,13 +21,14 @@
                 width: 75px;
                 height: 20px;
                 z-index: 10;
-                background-color: #333;
+                background-color: #555;
                 padding: 8px 5px;
                 margin: 5px;
                 opacity: 0.7;
                 color: white;
                 text-align: center;
                 cursor: pointer;
+                border: 1px solid #333;
             }
             #menu-button:hover {
                 background-color: white;
@@ -53,15 +54,33 @@
             }
             #menu-panel td {
                 cursor: pointer;
+                text-align: center;
+            }
+            #menu-panel td:hover {
+                background-color: blue;
             }
             #startup {
                 text-align: center;
                 width: 100%;
-                height: 200px;
+                height: auto;
                 margin: auto;
                 z-index: 10;
                 position: fixed;
-                top: 100px;
+                top: 400px;
+            }
+            .button {
+                height: 15px;
+                background-color: #333;
+                color: #fff;
+                border: 1px solid #555;
+                padding: 5px;
+                margin: auto;
+                cursor: pointer;
+                width: 75px;
+            }
+            .button:hover {
+                background-color: white;
+                color: black;
             }
         </style>
     </head>
@@ -106,7 +125,10 @@
         <!-- Startup Intro -->
         <div id="startup">
             <h1>Welcome</h1>
+            <p>This is an experimental VR visualization created using positional data gathered during the use of an AR enabled tablet.</p>
             <p>Click the menu button at the left and choose research participant data to load.</p>
+            <br><br>
+            <p id="dismss-intro" class="button">Dismiss</p>
         </div>
 
         <!-- A Frame -->
@@ -116,20 +138,29 @@
             <a-entity camera="userHeight: 1; acceleration:100; fly:true" look-controls wasd-controls></a-entity>
 
             <!-- Floor -->
-            <a-plane color="#bababa" height="20" width="20" position="-0.4 -1.8 -8.3" scale="1.0 1.10 1.0" rotation="-90 -90 180"></a-plane>
+            <a-plane color="#bababa" height="20" width="20" position="-0.4 -0.8 -8.3" scale="1.0 1.10 1.0" rotation="-90 -90 180"></a-plane>
+
+            <!-- 3D objects -->
+            <a-assets>
+                <a-asset-item id="trashcan-obj" src="assets/objects/TrashCan.obj"></a-asset-item>
+                <a-asset-item id="trashcan-mtl" src="assets/objects/TrashCanDirt_DS.mat"></a-asset-item>
+            </a-assets>
+            <a-entity id="trashcan" obj-model="obj: #trashcan-obj; mtl: #trashcan-mtl;" scale="0.01 0.01 0.01" position="0.145 -0.8 -0.66"></a-entity>
 
             <!-- Kitchen Model -->
             <a-assets>
                 <a-asset-item id="kitchen-obj" src="assets/Kitchen.obj"></a-asset-item>
                 <a-asset-item id="kitchen-mtl" src="assets/Kitchen.mtl"></a-asset-item>
             </a-assets>
-            <a-entity obj-model="obj: #kitchen-obj; mtl: #kitchen-mtl" position="10.64 -1.98 1.89" rotation="0 90 0"></a-entity>
+            <a-entity obj-model="obj: #kitchen-obj; mtl: #kitchen-mtl;" position="10.64 -1.98 1.89" rotation="0 90 0"></a-entity>
 
             <!-- Sky -->
             <a-sky color="#ECECEC"></a-sky>
 
             <!-- Tango Tablet -->
             <a-entity id="tango-data"></a-entity>
+
+
 
         </a-scene>
 
@@ -143,6 +174,11 @@
             $('#menu-button').on('click', function(){
                 $('#startup').hide();
                 $('#menu').toggle();
+            });
+
+            // push button to dismiss intro text
+            $('#dismss-intro').on('click', function(){
+                $('#startup').hide();
             });
 
             // Load RP Data
