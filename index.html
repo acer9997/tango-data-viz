@@ -4,12 +4,14 @@
 		<meta charset="utf-8">
 		<title>Tango Tablet Results</title>
 		<meta name="description" content="Tango Tablet Results">
-        <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+        <!--<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>-->
+        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script
                 src="https://code.jquery.com/jquery-3.2.1.min.js"
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
         <style>
             body {
                 font-family: Helvetica, sans-serif;
@@ -119,51 +121,138 @@
                     </tr>
                     </tbody>
                 </table>
+				<p>Experiment Control</p>
+                <table style="width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td class="rpdata" id="rpx">RPX</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <!-- Startup Intro -->
-        <div id="startup">
-            <h1>Welcome</h1>
-            <p>This is an experimental VR visualization created using positional data gathered during the use of an AR enabled tablet.</p>
-            <p>Click the menu button at the left and choose research participant data to load.</p>
-			<p>Move throughout the space using the directional keys on your keyboard:</p>
-			<div style="margin: auto; width: 200px;">
-				<table style="width: 100%;">
-					<tbody>
-						<tr><td></td><td><b>W</b><br>(Forward)</td><td></td></tr>
-						<tr></tr>
-						<tr><td><b>A</b><br>(Left)</td><td><b>S</b><br>(Backwards)</td><td><b>D</b><br>(Right)</td></tr>
-					</tbody>
-				</table>
-			</div>			
-			<p>Look around with the mouse by holding the left mouse key down and moving the cursor.</p>
-            <br><br>
-            <p id="dismss-intro" class="button">Dismiss</p>
-        </div>
+        <!--<div id="startup">-->
+            <!--<h1>Welcome</h1>-->
+            <!--<p>This is an experimental VR visualization created using positional data gathered during the use of an AR enabled tablet.</p>-->
+            <!--<p>Click the menu button at the left and choose research participant data to load.</p>-->
+			<!--<p>Move throughout the space using the directional keys on your keyboard:</p>-->
+			<!--<div style="margin: auto; width: 200px;">-->
+				<!--<table style="width: 100%;">-->
+					<!--<tbody>-->
+						<!--<tr><td></td><td><b>W</b><br>(Forward)</td><td></td></tr>-->
+						<!--<tr></tr>-->
+						<!--<tr><td><b>A</b><br>(Left)</td><td><b>S</b><br>(Backwards)</td><td><b>D</b><br>(Right)</td></tr>-->
+					<!--</tbody>-->
+				<!--</table>-->
+			<!--</div>			-->
+			<!--<p>Look around with the mouse by holding the left mouse key down and moving the cursor.</p>-->
+            <!--<br><br>-->
+            <!--<p id="dismss-intro" class="button">Dismiss</p>-->
+        <!--</div>-->
 
         <!-- A Frame -->
         <a-scene vr-mode-ui="enabled: true" inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
 
             <!-- Camera -->
-            <a-entity camera="userHeight: 1; acceleration:100; fly:true" look-controls wasd-controls></a-entity>
+            <a-entity camera="userHeight: 0.5; acceleration:100; fly:true" look-controls wasd-controls></a-entity>
 
             <!-- Floor -->
             <a-plane color="#bababa" height="20" width="20" position="-0.4 -0.8 -8.3" scale="1.0 1.10 1.0" rotation="-90 -90 180"></a-plane>
 
             <!-- 3D objects -->
             <a-assets>
-                <a-asset-item id="trashcan-obj" src="assets/objects/TrashCan.obj"></a-asset-item>
-                <a-asset-item id="trashcan-mtl" src="assets/objects/TrashCanDirt_DS.mat"></a-asset-item>
+                <!-- Trash Can -->
+                <a-asset-item id="trashcan-obj" src="assets/objects/TrashCan/TrashCan.obj"></a-asset-item>
+                <!-- Chef -->
+                <a-asset-item id="chef-obj" src="assets/objects/Chef/chef.obj"></a-asset-item>
+                <!-- Bleach Bottle -->
+                <a-asset-item id="bleach-obj" src="assets/objects/BleachJug/bleach jug.obj"></a-asset-item>
+                <!-- Wrench -->
+                <a-asset-item id="wrench-obj" src="assets/objects/Wrench/Wrench.obj"></a-asset-item>
+                <!-- Pipe -->
+                <a-asset-item id="pipe-obj" src="assets/objects/Pipe/pipe.obj"></a-asset-item>
+                <!-- Crate of Fruit -->
+                <a-asset-item id="fruitcrate-obj" src="assets/objects/CrateOfFruit/Crate_of_Fruit.obj"></a-asset-item>
+                <!-- Water Drop -->
+                <a-asset-item id="waterdrop-obj" src="assets/objects/WaterDrop/water drop.obj"></a-asset-item>
+                <!-- Tomato -->
+                <a-asset-item id="tomato-obj" src="assets/objects/Tomatoes/Tomatoes.obj"></a-asset-item>
+                <!-- Puddle of Water -->
+                <a-asset-item id="puddle-obj" src="assets/objects/Puddle/Puddle.obj"></a-asset-item>
+                <!-- Toilet Paper -->
+                <a-asset-item id="toiletpaper-obj" src="assets/objects/ToiletPaper/toilet_paper.obj"></a-asset-item>
+                <!-- Thermometer -->
+                <a-asset-item id="thermometer-obj" src="assets/objects/Thermometer/thermometer.obj"></a-asset-item>
+                <!-- Chemical Bottle -->
+                <a-asset-item id="bottle-obj" src="assets/objects/ChemicalBottles/bottle_one.obj"></a-asset-item>
+                <!-- Mop Bucket -->
+                <a-asset-item id="bucket-obj" src="assets/objects/MopBucket/mop bucket.obj"></a-asset-item>
+                <!-- Mice -->
+                <a-asset-item id="mouse-obj" src="assets/objects/Mouse/Mouse.obj"></a-asset-item>
+
             </a-assets>
-            <a-entity id="trashcan" obj-model="obj: #trashcan-obj; mtl: #trashcan-mtl;" scale="0.01 0.01 0.01" position="0.145 -0.8 -0.66"></a-entity>
+            <!-- ######## -->
+            <!-- Entities -->
+            <!-- ######## -->
+            <!-- Step 1: Handwashing Station ... Trash Can -->
+            <a-entity id="trashcan" obj-model="obj: #trashcan-obj" scale="0.01 0.01 0.01" position="0.145 -0.8 -0.66"></a-entity>
+
+            <!-- Step 2: Management Station ... Chef -->
+            <a-entity id="chef" obj-model="obj: #chef-obj" scale="1.5 1.5 1.5" position="4.22 -0.75 0.16"></a-entity>
+
+            <!-- Step 3: Dish Washing Sink ... Bleach Bottle -->
+            <a-entity id="bleach" obj-model="obj: #bleach-obj" scale="0.07 0.07 0.07" position="9.163 -0.71 1.33"></a-entity>
+            <a-entity id="chef" obj-model="obj: #chef-obj" scale="1.5 1.5 1.5" position="9.35 -0.75 -0.65"></a-entity>
+
+            <!-- Step 4: Dish Washing Machine ... Large Wrench -->
+            <a-entity id="wrench" obj-model="obj: #wrench-obj" scale="0.001225 0.001225 0.001225" position="6.62 0.0 -0.01"></a-entity>
+
+            <!-- Step 5: Ice Maker ... Pipe ... Water Drop -->
+            <a-entity id="pipe" obj-model="obj: #pipe-obj" scale="0.000675 0.000675 0.000675" position="5.95 -0.75 -5.29"></a-entity>
+            <a-entity id="waterdrop" obj-model="obj: #waterdrop-obj" scale="0.00375 0.00375 0.00375" position="6.51 0.0 -5.91"></a-entity>
+
+            <!-- Step 6: Prep Station / Cooler ... Tomatoes -->
+            <a-entity id="tomato" obj-model="obj: #tomato-obj" scale="3.0 3.0 3.0" position="2.28 -0.09 -8.15"></a-entity>
+            <a-entity id="fruitcrate" obj-model="obj: #fruitcrate-obj" scale="0.03 0.03 0.03" position="3.9 0.16 -8.16"></a-entity>
+
+            <!-- Step 7: Prep Station ... Chef-->
+            <a-entity id="chef" obj-model="obj: #chef-obj" scale="1.5 1.5 1.5" position="4.0 -0.75 -13.28"></a-entity>
+
+            <!-- Step 8: Stove ... Chef -->
+            <a-entity id="chef" obj-model="obj: #chef-obj" scale="1.5 1.5 1.5" position="4.2 -0.75 -14.273"></a-entity>
+
+            <!-- Step 9: Prep Station ... Chef -->
+            <a-entity id="chef" obj-model="obj: #chef-obj" scale="1.5 1.5 1.5" position="3.98 -0.75 -15.9"></a-entity>
+
+            <!-- Step 10: Sink ... Puddle of Water and Toilet Paper -->
+            <a-entity id="toiletpaper" obj-model="obj: #toiletpaper-obj" scale="0.0375 0.0375 0.0375" position="-3.73 -0.5 -14.11"></a-entity>
+            <a-entity id="puddle" obj-model="obj: #puddle-obj" scale="1.0 1.0 1.0" position="1.12 -1.8 0.76"></a-entity>
+
+            <!-- Step 11: Walk in Cooler ... Thermometer -->
+            <a-entity id="thermometer" obj-model="obj: #thermometer-obj" scale="0.09 0.09 0.09" position="-4.11 0.0 -11.03"></a-entity>
+
+            <!-- Step 12: Dry Storage ... Bottles of Chemicals -->
+            <a-entity id="chemicalbottle" obj-model="obj: #bottle-obj" scale="5.0 5.0 5.0" position="-10.28 0 -17.11"></a-entity>
+            <a-entity id="bucket" obj-model="obj: #bucket-obj" scale="1.0 1.0 1.0" position="-10.216 -0.75 -16.177"></a-entity>
+
+            <!-- Step 13: Walk in Cooler ... Crates of Fruit -->
+            <a-entity id="fruitcrate" obj-model="obj: #fruitcrate-obj" scale="0.03 0.03 0.03" position="-3.07 -1.8 -4.55"></a-entity>
+
+            <!-- Step 14: Exit Door ... Mice -->
+            <a-entity id="mouse" obj-model="obj: #mouse-obj" scale="1.0 1.0 1.0" position="-6.18 -0.75 0.73"></a-entity>
+
+
+
+
 
             <!-- Kitchen Model -->
             <a-assets>
-                <a-asset-item id="kitchen-obj" src="assets/Kitchen.obj"></a-asset-item>
-                <a-asset-item id="kitchen-mtl" src="assets/Kitchen.mtl"></a-asset-item>
+                <a-asset-item id="kitchen-obj" src="assets/Kitchen/Kitchen.obj"></a-asset-item>
+                <a-asset-item id="kitchen-mtl" src="assets/Kitchen/Kitchen.mtl"></a-asset-item>
             </a-assets>
-            <a-entity obj-model="obj: #kitchen-obj; mtl: #kitchen-mtl;" position="10.64 -1.98 1.89" rotation="0 90 0"></a-entity>
+            <a-entity obj-model="obj: #kitchen-obj; mtl: #kitchen-mtl;" scale="22.5 22.5 22.5" position="10.64 -1.98 1.89" rotation="0 90 0"></a-entity>
 
             <!-- Sky -->
             <a-sky color="#ECECEC"></a-sky>
@@ -171,47 +260,109 @@
             <!-- Tango Tablet -->
             <a-entity id="tango-data"></a-entity>
 
-
-
         </a-scene>
 
 	</body>
-    <script>
+<script>
+    function renderD3(){
+        // begin d3 work
+        var tango_tablets = d3.select('body').selectAll('.tango');
 
-        function LaunchScripts()
-        {
+        // lower left brace
+        tango_tablets.append('a-cylinder')
+            .attr('position', '0.118 0.088 0.125')
+            .attr('rotation', '72.5 12.5 0')
+            .attr('radius', '0.0025')
+            .attr('height', '0.2625')
+            .attr('color', 'red')
+            .attr('opacity', '0.15');
 
-            // Actions for menu button
-            $('#menu-button').on('click', function(){
-                $('#startup').hide();
-                $('#menu').toggle();
+        // lower right brace
+        tango_tablets.append('a-cylinder')
+            .attr('position', '-0.118 0.088 0.125')
+            .attr('rotation', '72.5 -12.5 0')
+            .attr('radius', '0.0025')
+            .attr('height', '0.2625')
+            .attr('color', 'red')
+            .attr('opacity', '0.15');
+
+        // top left brace
+        tango_tablets.append('a-cylinder')
+            .attr('position', '0.118 -0.088 0.125')
+            .attr('rotation', '102.5 12.5 0')
+            .attr('radius', '0.0025')
+            .attr('height', '0.2625')
+            .attr('color', 'red')
+            .attr('opacity', '0.15');
+
+        // top right brace
+        tango_tablets.append('a-cylinder')
+            .attr('position', '-0.118 -0.088 0.125')
+            .attr('rotation', '102.5 -12.5 0')
+            .attr('radius', '0.0025')
+            .attr('height', '0.2625')
+            .attr('color', 'red')
+            .attr('opacity', '0.15');
+
+        // outer plane
+        tango_tablets.append('a-box')
+            .attr('position', '0 0 0.25')
+            .attr('rotation', '0 0 0')
+            .attr('width', '0.3')
+            .attr('height', '0.25')
+            .attr('depth', '0.001')
+            .attr('color', 'red')
+            .attr('opacity', '0.15');
+    }
+
+    $( document ).ready(function() {
+
+        $.get("assets/rp/rpx.txt", function (data) {
+            $("#tango-data").html(data);
+            renderD3()
+        });
+
+        // Actions for menu button
+        $('#menu-button').on('click', function () {
+            $('#startup').hide();
+            $('#menu').toggle();
+        });
+
+        // push button to dismiss intro text
+        $('#dismss-intro').on('click', function () {
+            $('#startup').hide();
+        });
+
+        // Load RP Data
+        $('.rpdata').on('click', function () {
+
+            var rp = this.id;
+            console.log("Loading: " + rp);
+
+            // empty data
+            $('#tango-data').empty();
+
+            // fetch and load new data
+            // data is already organized and in the file being retrieved
+            $.get("assets/rp/" + rp + ".txt", function (data) {
+                $("#tango-data").html(data);
+                $("#menu").hide();
+                console.log("Load was performed.");
+                renderD3()
             });
 
-            // push button to dismiss intro text
-            $('#dismss-intro').on('click', function(){
-                $('#startup').hide();
-            });
 
-            // Load RP Data
-            $('.rpdata').on('click', function(){
+        });
 
-                var rp = this.id;
-                console.log("Loading: " + rp);
+/*
+to change opacity (make visibile ~ invisible
+var elems = document.getElementsByClassName('facing');
+for (i = 0; i < elems.length; i++) {
+var elem = elems[i];
+elem.setAttribute('opacity', '0');
+}
+*/
 
-                // empty data
-                $('#tango-data').empty();
-
-                // fetch and load new data
-                // data is already organized and in the file being retrieved
-                $.get( "assets/rp/" + rp + ".txt", function( data ) {
-                    $( "#tango-data" ).html( data );
-                    $( "#menu").hide();
-                    console.log("Load was performed.");
-                });
-            })
-
-        }
-
-        window.onload=LaunchScripts();
-    </script>
+    })
+</script>
 </html>
